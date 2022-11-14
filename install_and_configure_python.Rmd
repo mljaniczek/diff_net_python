@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "Margaret Janiczek"
+date: "2022-10-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#load reticulate library which interfaces with python
+library(reticulate)
+virtualenv_create("diffnet")
+# install SciPy
+conda_install("scipy", envname = "diffnet")
+# install other packages
+conda_install("pandas", envname = "diffnet")
+conda_install("sklearn", envname = "diffnet")
+conda_install("r-reticulate", "networkx")
+conda_install("r-reticulate", "sknetwork")
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+from scipy import linalg
+#from sklearn.datasets import make_sparse_spd_matrix
+from sklearn.impute import SimpleImputer
+import networkx as nx
+from sknetwork.clustering import Louvain
+```
+
